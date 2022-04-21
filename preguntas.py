@@ -22,8 +22,9 @@ def pregunta_01():
     40
 
     """
-    return
-
+    C_filas=len(tbl0)
+    return C_filas
+   
 
 def pregunta_02():
     """
@@ -33,8 +34,10 @@ def pregunta_02():
     4
 
     """
-    return
-
+    c_colum= pd.DataFrame(data=tbl0)
+    colum_1=len(c_colum.columns)
+    return colum_1
+    
 
 def pregunta_03():
     """
@@ -50,7 +53,8 @@ def pregunta_03():
     Name: _c1, dtype: int64
 
     """
-    return
+    colum1=tbl0.groupby(["_c1"]).size() 
+    return colum1
 
 
 def pregunta_04():
@@ -65,7 +69,8 @@ def pregunta_04():
     E    4.785714
     Name: _c2, dtype: float64
     """
-    return
+    colum_3=tbl0.groupby("_c1")["_c2"].mean()
+    return colum_3
 
 
 def pregunta_05():
@@ -82,7 +87,8 @@ def pregunta_05():
     E    9
     Name: _c2, dtype: int64
     """
-    return
+    colum_4=tbl0.groupby("_c1")["_c2"].max()
+    return colum_4
 
 
 def pregunta_06():
