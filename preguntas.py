@@ -157,9 +157,10 @@ def pregunta_09():
     39   39   E    5  1998-01-26  1998
 
     """
-    return
-
-
+    c_colum= pd.DataFrame(data=tbl0)
+    c_colum["year"]=c_colum["_c3"].str.split('-',expand=True)[0]
+    return c_colum
+   
 def pregunta_10():
     """
     Construya una tabla que contenga _c1 y una lista separada por ':' de los valores de
@@ -174,8 +175,13 @@ def pregunta_10():
     3   D                  1:2:3:5:5:7
     4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
     """
-    return
-
+    datos=tbl0.filter(items=("_c1","_c2"))
+    datos=datos.sort_values("_c2")
+    datos["_c2"]=datos["_c2"].astype(str)
+    tabla=datos.groupby(["_c1"],as_index=False).aggregate({"_c2":":".join})
+    tabla.set_index("_c1", inplace=True)
+    return tabla
+   
 
 def pregunta_11():
     """
