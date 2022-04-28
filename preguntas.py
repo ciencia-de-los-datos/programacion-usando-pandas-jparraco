@@ -199,8 +199,11 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
-    return
-
+    datos=tbl1.sort_values("_c4")
+    tabla=datos.groupby(["_c0"],as_index=False).aggregate({"_c4":",".join})
+    
+    return tabla
+    
 
 def pregunta_12():
     """
@@ -217,7 +220,11 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    return
+    _c5=[(x[1]+":"+str(x[2]))for x in tbl2.values]
+    datos=tbl2.assign(_c5=_c5)
+    datos=datos.sort_values("_c5")
+    datos=datos.groupby(("_c0"),as_index=False).aggregate({"_c5":",".join})
+    return datos
 
 
 def pregunta_13():
@@ -234,4 +241,6 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
+    datos=pd.merge(tbl0,tbl2, on="_c0")
+    suma_c5b=datos.groupby("_c1")["_c5b"].sum()
+    return suma_c5b
